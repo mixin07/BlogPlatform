@@ -255,6 +255,103 @@ NEXT_PUBLIC_API_URL=http://localhost:3000/api
 - Coordinate through team channels
 - Regular standup meetings for progress updates
 
+***
+
+```markdown
+# 📧 Nodemailer Setup for Gmail in Node.js
+
+Easily send emails from your Node.js app using Nodemailer and Gmail.  
+This setup uses environment variables for secure configuration.
+
+---
+
+## ⚙️ Installation
+
+```
+npm init -y
+npm install nodemailer dotenv
+```
+
+---
+
+## 🧩 Environment Configuration
+
+Create a `.env` file in your project root (never commit this file):
+
+```
+GMAIL_USER=yourgmailaddress@gmail.com
+GMAIL_PASS=yourgmailapppassword
+```
+
+> ⚠️ Use a Gmail **App Password** if your Google account has 2-Step Verification enabled.
+
+---
+
+## 📄 mail.js
+
+```
+require('dotenv').config();
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS
+  }
+});
+
+/**
+ * Send email using Gmail via Nodemailer
+ * @param {Object} mailOptions { to, subject, text, html }
+ * @returns {Promise}
+ */
+function sendMail(mailOptions) {
+  return transporter.sendMail({
+    from: process.env.GMAIL_USER,
+    ...mailOptions
+  });
+}
+
+module.exports = sendMail;
+```
+
+---
+
+## 🚀 Usage Example
+
+```
+// app.js
+const sendMail = require('./mail');
+
+sendMail({
+  to: 'recipient@example.com',
+  subject: 'Test Email',
+  text: 'Hello from Node.js!',
+  // html: '<b>Hello from Node.js!</b>'
+})
+  .then(info => console.log('Email sent:', info.response))
+  .catch(err => console.error('Error:', err));
+```
+
+---
+
+
+***
+
+
+Citations:
+[1] nodemailer/nodemailer: ✉️ Send e-mails with Node.JS https://github.com/nodemailer/nodemailer
+[2] motdotla/Nodemailer: Send e-mails with Node.JS https://github.com/motdotla/Nodemailer
+[3] accimeesterlin/nodemailer-examples https://github.com/accimeesterlin/nodemailer-examples
+[4] Basic example to send mail in node js using nodemailer https://github.com/Sumit22vas/Nodemailer-Example
+[5] Sending template emails in Node.JS https://github.com/GeekLaunch/nodejs-template-emails
+[6] prabhalaxman/nodemailer-ejs-template https://github.com/prabhalaxman/nodemailer-ejs-template
+[7] nodemailer-markdown https://www.npmjs.com/package/nodemailer-markdown
+[8] Node.js Email Verification Project https://github.com/harshatechtrainings/nodemailer-solution
+[9] schadokar/nodemailer-app: A simple mail sending nodejs ... https://github.com/schadokar/nodemailer-app
+[10] dimianni/nodemailer-form https://github.com/dimianni/nodemailer-form
+
 ## 🎯 Success Criteria
 
 - [ ] Users can register and get approved by admins
