@@ -1,7 +1,8 @@
 {
-  "name": "client",
+  "name": "blogplatform_frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "Club Blog Platform Frontend",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -11,13 +12,19 @@
   "dependencies": {
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.5"
+    "next": "15.5.5",
+    "axios": "^1.7.9",
+    "react-hook-form": "^7.54.0",
+    "react-hot-toast": "^2.4.1",
+    "js-cookie": "^3.0.5",
+    "lucide-react": "^0.468.0"
   },
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/js-cookie": "^3.0.6",
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4",
     "eslint": "^9",
