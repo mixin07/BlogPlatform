@@ -1,20 +1,15 @@
+import "./globals.css";
+import { AppProvider } from "../context/AppContext";
+import Navbar from "../components/Navbar";
 
-import React, { ReactNode } from "react";
-
-export const metadata = {
-  title: "Simple Club Blog",
-  description: "Club blog platform"
-};
-
-interface RootLayoutProps {
-  children: ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
-      <body>
-        <main style={{ padding: 24 }}>{children}</main>
+    <html lang="en">
+      <body className="bg-gray-100 min-h-screen">
+        <AppProvider>
+          <Navbar />
+          <main className="p-6">{children}</main>
+        </AppProvider>
       </body>
     </html>
   );
